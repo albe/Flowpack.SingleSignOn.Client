@@ -170,4 +170,3 @@ class SingleSignOnProvider extends \TYPO3\Flow\Security\Authentication\Provider\
 	}
 
 }
-?>

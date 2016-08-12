@@ -45,4 +45,3 @@ class TrustedPropertyMappingConfiguration extends \TYPO3\Flow\Property\PropertyM
 	}
 
 }
-?>

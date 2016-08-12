@@ -118,4 +118,3 @@ class SignedRequestPattern implements \TYPO3\Flow\Security\RequestPatternInterfa
 	protected function emitSignatureHeaderMissing($request) {
 	}
 }
-?>

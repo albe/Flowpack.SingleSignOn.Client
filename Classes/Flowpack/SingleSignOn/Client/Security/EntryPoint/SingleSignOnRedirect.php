@@ -56,4 +56,3 @@ class SingleSignOnRedirect extends \TYPO3\Flow\Security\Authentication\EntryPoin
 	}
 
 }
-?>

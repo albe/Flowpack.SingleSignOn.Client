@@ -80,4 +80,3 @@ class ConjunctionPattern implements \TYPO3\Flow\Security\RequestPatternInterface
 	}
 
 }
-?>

@@ -22,4 +22,3 @@ interface GlobalAccountMapperInterface {
 	public function getAccount(SsoClient $ssoClient, array $globalAccountData);
 
 }
-?>

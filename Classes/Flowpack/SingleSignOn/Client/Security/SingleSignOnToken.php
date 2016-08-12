@@ -111,4 +111,3 @@ class SingleSignOnToken extends \TYPO3\Flow\Security\Authentication\Token\Abstra
 	}
 
 }
-?>

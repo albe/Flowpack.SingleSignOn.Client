@@ -68,4 +68,3 @@ class SessionController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	}
 
 }
-?>

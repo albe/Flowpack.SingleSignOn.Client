@@ -1,28 +1,32 @@
 {
-	"name": "flowpack\/singlesignon-client",
-	"type": "typo3-flow-package",
-	"description": "Flowpack SingleSignOn Client",
-	"license": ["MIT"],
-	"authors": [
-		{
-			"name": "Christopher Hlubek",
-			"email": "hlubek@networkteam.com",
-			"homepage": "http://www.networkteam.com",
-			"role": "Developer"
-		},
-		{
-			"name": "Robert Lemke",
-			"email": "rl@robertlemke.com",
-			"homepage": "http://robertlemke.com",
-			"role": "Developer"
-		}
-	],
-	"require": {
-		"typo3\/flow": "~2.0"
-	},
-	"autoload": {
-		"psr-0": {
-			"Flowpack\\SingleSignOn\\Client": "Classes"
-		}
-	}
+    "name": "flowpack/singlesignon-client",
+    "type": "typo3-flow-package",
+    "description": "Flowpack SingleSignOn Client",
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "Christopher Hlubek",
+            "email": "hlubek@networkteam.com",
+            "homepage": "http://www.networkteam.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Robert Lemke",
+            "email": "rl@robertlemke.com",
+            "homepage": "http://robertlemke.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/flow": "~3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Flowpack\\SingleSignOn\\Client": "Classes"
+        }
+    },
+    "extra": {
+    }
 }

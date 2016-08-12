@@ -47,4 +47,3 @@ class SsoKeyCommandController extends CommandController {
 
 }
 
-?>

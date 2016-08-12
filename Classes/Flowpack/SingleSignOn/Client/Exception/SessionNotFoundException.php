@@ -14,4 +14,3 @@ use TYPO3\Flow\Annotations as Flow;
 class SessionNotFoundException extends \TYPO3\Flow\Exception {
 
 }
-?>
