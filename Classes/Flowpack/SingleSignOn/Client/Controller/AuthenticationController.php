@@ -5,8 +5,8 @@ namespace Flowpack\SingleSignOn\Client\Controller;
  * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.Client". *
  *                                                                               */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Controller\ActionController;
 
 /**
  * Authentication controller
@@ -19,12 +19,12 @@ class AuthenticationController extends ActionController {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface
+	 * @var \Neos\Flow\Security\Authentication\AuthenticationManagerInterface
 	 */
 	protected $authenticationManager;
 
 	/**
-	 * @var \TYPO3\Flow\Security\Context
+	 * @var \Neos\Flow\Security\Context
 	 * @Flow\Inject
 	 */
 	protected $securityContext;
@@ -41,7 +41,7 @@ class AuthenticationController extends ActionController {
 	public function callbackAction($callbackUri) {
 		try {
 			$this->authenticationManager->authenticate();
-		} catch (\TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception) {
+		} catch (\Neos\Flow\Security\Exception\AuthenticationRequiredException $exception) {
 			$authenticationException = $exception;
 		}
 

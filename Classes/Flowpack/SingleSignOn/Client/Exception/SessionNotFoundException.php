@@ -6,11 +6,11 @@ namespace Flowpack\SingleSignOn\Client\Exception;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  *
  */
-class SessionNotFoundException extends \TYPO3\Flow\Exception {
+class SessionNotFoundException extends \Neos\Flow\Exception {
 
 }

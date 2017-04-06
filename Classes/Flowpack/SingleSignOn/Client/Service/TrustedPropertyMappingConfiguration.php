@@ -6,15 +6,15 @@ namespace Flowpack\SingleSignOn\Client\Service;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use \TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter;
+use Neos\Flow\Annotations as Flow;
+use \Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 
 /**
  * A property mapper for trusted sources
  *
  * Will map all properties and allow creation of new objects.
  */
-class TrustedPropertyMappingConfiguration extends \TYPO3\Flow\Property\PropertyMappingConfiguration {
+class TrustedPropertyMappingConfiguration extends \Neos\Flow\Property\PropertyMappingConfiguration {
 
 	/**
 	 * Map all unknown properties by default
@@ -27,12 +27,12 @@ class TrustedPropertyMappingConfiguration extends \TYPO3\Flow\Property\PropertyM
 	 * Set default type converter options
 	 */
 	public function __construct() {
-		$this->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter', PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, TRUE);
+		$this->setTypeConverterOption('Neos\Flow\Property\TypeConverter\PersistentObjectConverter', PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, TRUE);
 	}
 
 	/**
 	 * @param string $propertyName
-	 * @return \TYPO3\Flow\Property\PropertyMappingConfigurationInterface
+	 * @return \Neos\Flow\Property\PropertyMappingConfigurationInterface
 	 */
 	public function getConfigurationFor($propertyName) {
 		if (isset($this->subConfigurationForProperty[$propertyName])) {

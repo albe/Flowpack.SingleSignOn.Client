@@ -6,7 +6,7 @@ namespace Flowpack\SingleSignOn\Client\Service;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Flowpack\SingleSignOn\Client\Domain\Model\SsoClient;
 
 /**
@@ -17,7 +17,7 @@ interface GlobalAccountMapperInterface {
 	/**
 	 * @param \Flowpack\SingleSignOn\Client\Domain\Model\SsoClient $ssoClient
 	 * @param array $globalAccountData
-	 * @return \TYPO3\Flow\Security\Account
+	 * @return \Neos\Flow\Security\Account
 	 */
 	public function getAccount(SsoClient $ssoClient, array $globalAccountData);
 

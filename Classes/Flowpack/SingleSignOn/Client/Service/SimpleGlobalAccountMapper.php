@@ -6,7 +6,7 @@ namespace Flowpack\SingleSignOn\Client\Service;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Flowpack\SingleSignOn\Client\Domain\Model\SsoClient;
 use Flowpack\SingleSignOn\Client\Exception;
 
@@ -20,7 +20,7 @@ class SimpleGlobalAccountMapper implements GlobalAccountMapperInterface {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Property\PropertyMapper
+	 * @var \Neos\Flow\Property\PropertyMapper
 	 */
 	protected $propertyMapper;
 
@@ -41,16 +41,16 @@ class SimpleGlobalAccountMapper implements GlobalAccountMapperInterface {
 	/**
 	 * @param \Flowpack\SingleSignOn\Client\Domain\Model\SsoClient $ssoClient
 	 * @param array $globalAccountData
-	 * @return \TYPO3\Flow\Security\Account
+	 * @return \Neos\Flow\Security\Account
 	 */
 	public function getAccount(SsoClient $ssoClient, array $globalAccountData) {
-		$account = new \TYPO3\Flow\Security\Account();
+		$account = new \Neos\Flow\Security\Account();
 
 		// TODO Check validity of globalAccountData
 
 		$account->setAccountIdentifier($globalAccountData['accountIdentifier']);
 		$account->setAuthenticationProviderName('SingleSignOn');
-		$account->setRoles(array_map(function($roleIdentifier) { return new \TYPO3\Flow\Security\Policy\Role($roleIdentifier); }, $globalAccountData['roles']));
+		$account->setRoles(array_map(function($roleIdentifier) { return new \Neos\Flow\Security\Policy\Role($roleIdentifier); }, $globalAccountData['roles']));
 
 		if (isset($globalAccountData['party'])) {
 			$party = $this->mapParty($globalAccountData['party']);

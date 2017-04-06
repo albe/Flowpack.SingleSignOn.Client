@@ -6,9 +6,9 @@ namespace Flowpack\SingleSignOn\Client\Domain\Model;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
-use \TYPO3\Flow\Http\Uri;
+use \Neos\Flow\Http\Uri;
 
 use \Flowpack\SingleSignOn\Client\Exception;
 use \Flowpack\SingleSignOn\Client\Domain\Model\SsoClient;
@@ -40,13 +40,13 @@ class SsoServer {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Cryptography\RsaWalletServiceInterface
+	 * @var \Neos\Flow\Security\Cryptography\RsaWalletServiceInterface
 	 */
 	protected $rsaWalletService;
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Http\Client\CurlEngine
+	 * @var \Neos\Flow\Http\Client\CurlEngine
 	 */
 	protected $requestEngine;
 
@@ -97,7 +97,7 @@ class SsoServer {
 	 */
 	public function redeemAccessToken(SsoClient $ssoClient, $accessToken) {
 		$serviceUri = new Uri($this->serviceBaseUri . '/token/' . urlencode($accessToken) . '/redeem');
-		$request = \TYPO3\Flow\Http\Request::create($serviceUri, 'POST');
+		$request = \Neos\Flow\Http\Request::create($serviceUri, 'POST');
 		$request->setHeader('Accept', 'application/json');
 		$request->setContent('');
 
@@ -135,7 +135,7 @@ class SsoServer {
 	 */
 	public function touchSession(SsoClient $ssoClient, $sessionId) {
 		$serviceUri = $this->serviceBaseUri . '/session/' . urlencode($sessionId) . '/touch';
-		$request = \TYPO3\Flow\Http\Request::create(new Uri($serviceUri), 'POST');
+		$request = \Neos\Flow\Http\Request::create(new Uri($serviceUri), 'POST');
 		$request->setContent('');
 
 		$signedRequest = $this->requestSigner->signRequest($request, $ssoClient->getPublicKeyFingerprint(), $ssoClient->getPublicKeyFingerprint());
@@ -163,7 +163,7 @@ class SsoServer {
 	public function destroySession(SsoClient $ssoClient, $sessionId) {
 		$serviceUri = new Uri($this->serviceBaseUri . '/session/' . urlencode($sessionId) . '/destroy');
 		$serviceUri->setQuery(http_build_query(array('clientIdentifier' => $ssoClient->getServiceBaseUri())));
-		$request = \TYPO3\Flow\Http\Request::create($serviceUri, 'DELETE');
+		$request = \Neos\Flow\Http\Request::create($serviceUri, 'DELETE');
 		$request->setContent('');
 
 		$signedRequest = $this->requestSigner->signRequest($request, $ssoClient->getPublicKeyFingerprint(), $ssoClient->getPublicKeyFingerprint());

@@ -5,8 +5,8 @@ namespace Flowpack\SingleSignOn\Client\Command;
  * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.Client". *
  *                                                                               */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Cli\CommandController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Cli\CommandController;
 
 /**
  * Command controller for the SSO key management
@@ -16,7 +16,7 @@ use TYPO3\Flow\Cli\CommandController;
 class SsoKeyCommandController extends CommandController {
 
 	/**
-	 * @var \TYPO3\Flow\Security\Cryptography\RsaWalletServiceInterface
+	 * @var \Neos\Flow\Security\Cryptography\RsaWalletServiceInterface
 	 * @Flow\Inject
 	 */
 	protected $rsaWalletService;

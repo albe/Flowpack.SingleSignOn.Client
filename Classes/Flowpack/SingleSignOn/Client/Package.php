@@ -6,20 +6,20 @@ namespace Flowpack\SingleSignOn\Client;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Connect SSO specific signals
  */
-class Package extends \TYPO3\Flow\Package\Package {
+class Package extends \Neos\Flow\Package\Package {
 
 	/**
-	 * @param \TYPO3\Flow\Core\Bootstrap $bootstrap
+	 * @param \Neos\Flow\Core\Bootstrap $bootstrap
 	 * @return void
 	 */
-	public function boot(\TYPO3\Flow\Core\Bootstrap $bootstrap) {
+	public function boot(\Neos\Flow\Core\Bootstrap $bootstrap) {
 		$bootstrap->getSignalSlotDispatcher()->connect(
-			'TYPO3\Flow\Security\Authentication\AuthenticationProviderManager',
+			'Neos\Flow\Security\Authentication\AuthenticationProviderManager',
 			'loggedOut',
 			'Flowpack\SingleSignOn\Client\Service\SingleSignOnManager',
 			'logout'

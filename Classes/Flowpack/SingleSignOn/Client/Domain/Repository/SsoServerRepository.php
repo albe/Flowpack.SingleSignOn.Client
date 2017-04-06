@@ -6,9 +6,9 @@ namespace Flowpack\SingleSignOn\Client\Domain\Repository;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
-use \TYPO3\Flow\Http\Uri;
+use \Neos\Flow\Http\Uri;
 
 /**
  * SSO server repository

@@ -11,7 +11,7 @@ use \Mockery as m;
 /**
  * Unit test for SsoClient
  */
-class SsoClientTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class SsoClientTest extends \Neos\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -20,7 +20,7 @@ class SsoClientTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$ssoClient = new \Flowpack\SingleSignOn\Client\Domain\Model\SsoClient();
 		$ssoClient->setPublicKeyFingerprint('key-pair-uuid');
 
-		$mockRsaWalletService = m::mock('TYPO3\Flow\Security\Cryptography\RsaWalletServiceInterface');
+		$mockRsaWalletService = m::mock('Neos\Flow\Security\Cryptography\RsaWalletServiceInterface');
 		$this->inject($ssoClient, 'rsaWalletService', $mockRsaWalletService);
 
 		$mockRsaWalletService->shouldReceive('decrypt')->with('access-token-cipher', 'key-pair-uuid')->andReturn('access-token');

@@ -6,7 +6,7 @@ namespace Flowpack\SingleSignOn\Client\Service;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Flowpack\SingleSignOn\Client\Exception;
 
 
@@ -29,13 +29,13 @@ class SingleSignOnManager {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Context
+	 * @var \Neos\Flow\Security\Context
 	 */
 	protected $securityContext;
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Configuration\ConfigurationManager
+	 * @var \Neos\Flow\Configuration\ConfigurationManager
 	 */
 	protected $configurationManager;
 
@@ -49,11 +49,11 @@ class SingleSignOnManager {
 	 * @return void
 	 */
 	public function logout() {
-		$allConfiguration = $this->configurationManager->getConfiguration(\TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow');
+		$allConfiguration = $this->configurationManager->getConfiguration(\Neos\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'Neos.Flow');
 		$tokens = $this->securityContext->getAuthenticationTokensOfType('Flowpack\SingleSignOn\Client\Security\SingleSignOnToken');
 		foreach ($tokens as $token) {
 			$providerName = $token->getAuthenticationProviderName();
-			$serverIdentifier = \TYPO3\Flow\Utility\Arrays::getValueByPath($allConfiguration, 'security.authentication.providers.' . $providerName . '.providerOptions.server');
+			$serverIdentifier = \Neos\Flow\Utility\Arrays::getValueByPath($allConfiguration, 'security.authentication.providers.' . $providerName . '.providerOptions.server');
 			if ($serverIdentifier !== NULL) {
 				$ssoClient = $this->ssoClientFactory->create();
 				$ssoServer = $this->ssoServerFactory->create($serverIdentifier);

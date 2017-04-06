@@ -6,14 +6,14 @@ namespace Flowpack\SingleSignOn\Client\Security;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * SSO token for handling SSO callbacks
  *
  * TODO Add description how that works
  */
-class SingleSignOnToken extends \TYPO3\Flow\Security\Authentication\Token\AbstractToken {
+class SingleSignOnToken extends \Neos\Flow\Security\Authentication\Token\AbstractToken {
 
 	/**
 	 * The SSO credentials after callback to client
@@ -23,7 +23,7 @@ class SingleSignOnToken extends \TYPO3\Flow\Security\Authentication\Token\Abstra
 	protected $credentials = array('accessToken' => '', 'signature' => '');
 
 	/**
-	 * @var \TYPO3\Flow\Http\Uri
+	 * @var \Neos\Flow\Http\Uri
 	 * @Flow\Transient
 	 */
 	protected $callbackUri;
@@ -47,10 +47,10 @@ class SingleSignOnToken extends \TYPO3\Flow\Security\Authentication\Token\Abstra
 	 * make sure that the authentication manager will (re-)authenticate the tokens with the current credentials.
 	 * Note: You should not persist the credentials!
 	 *
-	 * @param \TYPO3\Flow\Mvc\ActionRequest $request The current request instance
+	 * @param \Neos\Flow\Mvc\ActionRequest $request The current request instance
 	 * @return boolean TRUE if this token needs to be (re-)authenticated
 	 */
-	public function updateCredentials(\TYPO3\Flow\Mvc\ActionRequest $actionRequest) {
+	public function updateCredentials(\Neos\Flow\Mvc\ActionRequest $actionRequest) {
 		$httpRequest = $actionRequest->getHttpRequest();
 		if ($httpRequest->getMethod() !== 'GET') {
 			return;
@@ -58,8 +58,8 @@ class SingleSignOnToken extends \TYPO3\Flow\Security\Authentication\Token\Abstra
 
 			// Check if we have a callback request
 		$arguments = $httpRequest->getArguments();
-		$accessTokenCipher = \TYPO3\Flow\Reflection\ObjectAccess::getPropertyPath($arguments, '__flowpack.singlesignon.accessToken');
-		$signature = \TYPO3\Flow\Reflection\ObjectAccess::getPropertyPath($arguments, '__flowpack.singlesignon.signature');
+		$accessTokenCipher = \Neos\Flow\Reflection\ObjectAccess::getPropertyPath($arguments, '__flowpack.singlesignon.accessToken');
+		$signature = \Neos\Flow\Reflection\ObjectAccess::getPropertyPath($arguments, '__flowpack.singlesignon.signature');
 
 		if (!empty($accessTokenCipher) && !empty($signature)) {
 				// Get callback parameters from request
@@ -76,7 +76,7 @@ class SingleSignOnToken extends \TYPO3\Flow\Security\Authentication\Token\Abstra
 	}
 
 	/**
-	 * @return \TYPO3\Flow\Http\Uri
+	 * @return \Neos\Flow\Http\Uri
 	 */
 	public function getCallbackUri() {
 		return $this->callbackUri;

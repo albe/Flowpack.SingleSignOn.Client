@@ -6,22 +6,22 @@ namespace Flowpack\SingleSignOn\Client\Security\RequestPattern;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Match subpatterns as a conjunction (match iff all subpatterns match)
  */
-class ConjunctionPattern implements \TYPO3\Flow\Security\RequestPatternInterface {
+class ConjunctionPattern implements \Neos\Flow\Security\RequestPatternInterface {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\RequestPatternResolver
+	 * @var \Neos\Flow\Security\RequestPatternResolver
 	 */
 	protected $requestPatternResolver;
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\ObjectManagement\ObjectManagerInterface
+	 * @var \Neos\Flow\ObjectManagement\ObjectManagerInterface
 	 */
 	protected $objectManager;
 
@@ -63,13 +63,13 @@ class ConjunctionPattern implements \TYPO3\Flow\Security\RequestPatternInterface
 	}
 
 	/**
-	 * Matches a \TYPO3\Flow\Mvc\RequestInterface against its set pattern rules
+	 * Matches a \Neos\Flow\Mvc\RequestInterface against its set pattern rules
 	 *
-	 * @param \TYPO3\Flow\Mvc\RequestInterface $request The request that should be matched
+	 * @param \Neos\Flow\Mvc\RequestInterface $request The request that should be matched
 	 * @return boolean TRUE if the pattern matched, FALSE otherwise
 	 */
-	public function matchRequest(\TYPO3\Flow\Mvc\RequestInterface $request) {
-		/** @var \TYPO3\Flow\Security\RequestPatternInterface $pattern */
+	public function matchRequest(\Neos\Flow\Mvc\RequestInterface $request) {
+		/** @var \Neos\Flow\Security\RequestPatternInterface $pattern */
 		foreach ($this->subPatterns as $pattern) {
 			if ($pattern->matchRequest($request) === FALSE) {
 				return FALSE;

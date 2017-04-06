@@ -6,11 +6,11 @@ namespace Flowpack\SingleSignOn\Client;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * A general SSO client exception
  */
-class Exception extends \TYPO3\Flow\Exception {
+class Exception extends \Neos\Flow\Exception {
 
 }

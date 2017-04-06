@@ -6,7 +6,7 @@ namespace Flowpack\SingleSignOn\Client\Controller;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Session management controller
@@ -15,18 +15,18 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @Flow\Scope("singleton")
  */
-class SessionController extends \TYPO3\Flow\Mvc\Controller\ActionController {
+class SessionController extends \Neos\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Session\SessionManagerInterface
+	 * @var \Neos\Flow\Session\SessionManagerInterface
 	 */
 	protected $sessionManager;
 
 	/**
 	 * @var string
 	 */
-	protected $defaultViewObjectName = 'TYPO3\Flow\Mvc\View\JsonView';
+	protected $defaultViewObjectName = 'Neos\Flow\Mvc\View\JsonView';
 
 	/**
 	 * @var array

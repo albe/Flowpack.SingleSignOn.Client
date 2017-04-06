@@ -7,19 +7,19 @@ namespace Flowpack\SingleSignOn\Client\Tests\Unit\Security;
  *                                                                        */
 
 use \Mockery as m;
-use \TYPO3\Flow\Http\Uri;
+use \Neos\Flow\Http\Uri;
 
 /**
  *
  */
-class SingleSignOnProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class SingleSignOnProviderTest extends \Neos\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @test
 	 */
 	public function authenticateTagsSessionWithGlobalSessionIdOnSuccessfulAuthentication() {
 		$mockAuthenticationToken = m::mock('Flowpack\SingleSignOn\Client\Security\SingleSignOnToken', array(
-			'getAuthenticationStatus' => \TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_NEEDED,
+			'getAuthenticationStatus' => \Neos\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_NEEDED,
 			'getCredentials' => array('signature' => 'TestSignature', 'accessToken' => 'EncryptedAccessToken'),
 			'setGlobalSessionId' => NULL,
 			'setAccount' => NULL,
@@ -47,10 +47,10 @@ class SingleSignOnProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$mockSsoClientFactory->shouldReceive('create')->andReturn($mockSsoClient);
 		$this->inject($provider, 'ssoClientFactory', $mockSsoClientFactory);
 
-		$mockSession = m::mock('TYPO3\Flow\Session\SessionInterface');
+		$mockSession = m::mock('Neos\Flow\Session\SessionInterface');
 		$this->inject($provider, 'session', $mockSession);
 
-		$mockAccount = m::mock('TYPO3\Flow\Security\Account');
+		$mockAccount = m::mock('Neos\Flow\Security\Account');
 		$mockGlobalAccountMapper = m::mock('Flowpack\SingleSignOn\Client\Service\GlobalAccountMapperInterface', array(
 			'getAccount' => $mockAccount
 		));

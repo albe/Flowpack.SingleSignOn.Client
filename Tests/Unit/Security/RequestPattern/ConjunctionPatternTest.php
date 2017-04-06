@@ -7,12 +7,12 @@ namespace Flowpack\SingleSignOn\Client\Tests\Unit\Security\RequestPattern;
  *                                                                        */
 
 use \Mockery as m;
-use \TYPO3\Flow\Http\Uri;
+use \Neos\Flow\Http\Uri;
 
 /**
  *
  */
-class ConjunctionPatternTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class ConjunctionPatternTest extends \Neos\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -20,14 +20,14 @@ class ConjunctionPatternTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	public function matchRequestReturnsFalseOnFirstSubpatternFail() {
 		$pattern = new \Flowpack\SingleSignOn\Client\Security\RequestPattern\ConjunctionPattern();
 
-		$mockObjectManager = m::mock('TYPO3\Flow\ObjectManagement\ObjectManagerInterface');
+		$mockObjectManager = m::mock('Neos\Flow\ObjectManagement\ObjectManagerInterface');
 		$this->inject($pattern, 'objectManager', $mockObjectManager);
-		$mockRequestPatternResolver = m::mock('TYPO3\Flow\Security\RequestPatternResolver');
+		$mockRequestPatternResolver = m::mock('Neos\Flow\Security\RequestPatternResolver');
 		$this->inject($pattern, 'requestPatternResolver', $mockRequestPatternResolver);
 
-		$mockFailingPattern = m::mock('TYPO3\Flow\Security\RequestPatternInterface', array('setPattern' => NULL));
+		$mockFailingPattern = m::mock('Neos\Flow\Security\RequestPatternInterface', array('setPattern' => NULL));
 		$mockFailingPattern->shouldReceive('matchRequest')->andReturn(FALSE);
-		$mockIgnoredPattern = m::mock('TYPO3\Flow\Security\RequestPatternInterface', array('setPattern' => NULL));
+		$mockIgnoredPattern = m::mock('Neos\Flow\Security\RequestPatternInterface', array('setPattern' => NULL));
 		$mockIgnoredPattern->shouldReceive('matchRequest')->never();
 
 		$mockRequestPatternResolver->shouldReceive('resolveRequestPatternClass')->with('TestPattern1')->andReturn('MyPackage\Security\TestPattern1');
@@ -48,7 +48,7 @@ class ConjunctionPatternTest extends \TYPO3\Flow\Tests\UnitTestCase {
 			)
 		));
 
-		$mockActionRequest = m::mock('TYPO3\Flow\Mvc\ActionRequest');
+		$mockActionRequest = m::mock('Neos\Flow\Mvc\ActionRequest');
 
 		$result = $pattern->matchRequest($mockActionRequest);
 		$this->assertFalse($result);
@@ -60,14 +60,14 @@ class ConjunctionPatternTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	public function matchRequestReturnsTrueIfAllSubpatternsMatch() {
 		$pattern = new \Flowpack\SingleSignOn\Client\Security\RequestPattern\ConjunctionPattern();
 
-		$mockObjectManager = m::mock('TYPO3\Flow\ObjectManagement\ObjectManagerInterface');
+		$mockObjectManager = m::mock('Neos\Flow\ObjectManagement\ObjectManagerInterface');
 		$this->inject($pattern, 'objectManager', $mockObjectManager);
-		$mockRequestPatternResolver = m::mock('TYPO3\Flow\Security\RequestPatternResolver');
+		$mockRequestPatternResolver = m::mock('Neos\Flow\Security\RequestPatternResolver');
 		$this->inject($pattern, 'requestPatternResolver', $mockRequestPatternResolver);
 
-		$mockFailingPattern = m::mock('TYPO3\Flow\Security\RequestPatternInterface', array('setPattern' => NULL));
+		$mockFailingPattern = m::mock('Neos\Flow\Security\RequestPatternInterface', array('setPattern' => NULL));
 		$mockFailingPattern->shouldReceive('matchRequest')->andReturn(TRUE);
-		$mockIgnoredPattern = m::mock('TYPO3\Flow\Security\RequestPatternInterface', array('setPattern' => NULL));
+		$mockIgnoredPattern = m::mock('Neos\Flow\Security\RequestPatternInterface', array('setPattern' => NULL));
 		$mockIgnoredPattern->shouldReceive('matchRequest')->andReturn(TRUE);
 
 		$mockRequestPatternResolver->shouldReceive('resolveRequestPatternClass')->with('TestPattern1')->andReturn('MyPackage\Security\TestPattern1');
@@ -88,7 +88,7 @@ class ConjunctionPatternTest extends \TYPO3\Flow\Tests\UnitTestCase {
 			)
 		));
 
-		$mockActionRequest = m::mock('TYPO3\Flow\Mvc\ActionRequest');
+		$mockActionRequest = m::mock('Neos\Flow\Mvc\ActionRequest');
 
 		$result = $pattern->matchRequest($mockActionRequest);
 		$this->assertTrue($result);
@@ -104,7 +104,7 @@ class ConjunctionPatternTest extends \TYPO3\Flow\Tests\UnitTestCase {
 			'patterns' => array()
 		));
 
-		$mockActionRequest = m::mock('TYPO3\Flow\Mvc\ActionRequest');
+		$mockActionRequest = m::mock('Neos\Flow\Mvc\ActionRequest');
 
 		$result = $pattern->matchRequest($mockActionRequest);
 		$this->assertTrue($result);

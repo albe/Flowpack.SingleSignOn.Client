@@ -6,7 +6,7 @@ namespace Flowpack\SingleSignOn\Client\Security;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  *

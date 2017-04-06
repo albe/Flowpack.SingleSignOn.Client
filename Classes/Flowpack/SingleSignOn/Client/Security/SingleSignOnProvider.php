@@ -6,7 +6,7 @@ namespace Flowpack\SingleSignOn\Client\Security;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Flowpack\SingleSignOn\Client\Exception;
 
 /**
@@ -14,7 +14,7 @@ use Flowpack\SingleSignOn\Client\Exception;
  *
  * TODO Add more description how that works
  */
-class SingleSignOnProvider extends \TYPO3\Flow\Security\Authentication\Provider\AbstractProvider {
+class SingleSignOnProvider extends \Neos\Flow\Security\Authentication\Provider\AbstractProvider {
 
 	/**
 	 * @Flow\Inject
@@ -36,7 +36,7 @@ class SingleSignOnProvider extends \TYPO3\Flow\Security\Authentication\Provider\
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Session\SessionInterface
+	 * @var \Neos\Flow\Session\SessionInterface
 	 */
 	protected $session;
 
@@ -68,16 +68,16 @@ class SingleSignOnProvider extends \TYPO3\Flow\Security\Authentication\Provider\
 	/**
 	 * Tries to authenticate the given token. Sets isAuthenticated to TRUE if authentication succeeded.
 	 *
-	 * @param \TYPO3\Flow\Security\Authentication\TokenInterface $authenticationToken The token to be authenticated
+	 * @param \Neos\Flow\Security\Authentication\TokenInterface $authenticationToken The token to be authenticated
 	 * @return void
 	 * @Flow\Session(autoStart=true)
 	 */
-	public function authenticate(\TYPO3\Flow\Security\Authentication\TokenInterface $authenticationToken) {
+	public function authenticate(\Neos\Flow\Security\Authentication\TokenInterface $authenticationToken) {
 		if (!$authenticationToken instanceof SingleSignOnToken) {
-			throw new \TYPO3\Flow\Security\Exception\UnsupportedAuthenticationTokenException('This provider cannot authenticate the given token.', 1351008039);
+			throw new \Neos\Flow\Security\Exception\UnsupportedAuthenticationTokenException('This provider cannot authenticate the given token.', 1351008039);
 		}
 
-		if ($authenticationToken->getAuthenticationStatus() === \TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_NEEDED) {
+		if ($authenticationToken->getAuthenticationStatus() === \Neos\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_NEEDED) {
 				// Verify signature with server public key
 			$credentials = $authenticationToken->getCredentials();
 			$signature = $credentials['signature'];
@@ -105,9 +105,9 @@ class SingleSignOnProvider extends \TYPO3\Flow\Security\Authentication\Provider\
 			$authenticationToken->setGlobalSessionId($globalSessionId);
 			$authenticationToken->setAccount($account);
 
-			$authenticationToken->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
-		} elseif ($authenticationToken->getAuthenticationStatus() !== \TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL) {
-			$authenticationToken->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::NO_CREDENTIALS_GIVEN);
+			$authenticationToken->setAuthenticationStatus(\Neos\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+		} elseif ($authenticationToken->getAuthenticationStatus() !== \Neos\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL) {
+			$authenticationToken->setAuthenticationStatus(\Neos\Flow\Security\Authentication\TokenInterface::NO_CREDENTIALS_GIVEN);
 		}
 	}
 
@@ -118,17 +118,17 @@ class SingleSignOnProvider extends \TYPO3\Flow\Security\Authentication\Provider\
 	 * request that calls authenticate (which is done through the PolicyEnforcement interceptor),
 	 * so we can touch the global session regularly.
 	 *
-	 * @param \TYPO3\Flow\Security\Authentication\TokenInterface $authenticationToken
+	 * @param \Neos\Flow\Security\Authentication\TokenInterface $authenticationToken
 	 * @return boolean
 	 */
-	public function canAuthenticate(\TYPO3\Flow\Security\Authentication\TokenInterface $authenticationToken) {
+	public function canAuthenticate(\Neos\Flow\Security\Authentication\TokenInterface $authenticationToken) {
 		$canAuthenticate = parent::canAuthenticate($authenticationToken);
 		if ($canAuthenticate && $authenticationToken->isAuthenticated()) {
 			try {
 				$this->touchSessionIfNeeded($authenticationToken);
 			} catch (\Flowpack\SingleSignOn\Client\Exception\SessionNotFoundException $exception) {
 				// FIXME Is there another way to unauthenticate the token?
-				$authenticationToken->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::WRONG_CREDENTIALS);
+				$authenticationToken->setAuthenticationStatus(\Neos\Flow\Security\Authentication\TokenInterface::WRONG_CREDENTIALS);
 			}
 		}
 		return $canAuthenticate;

@@ -11,7 +11,7 @@ use \Mockery as m;
 /**
  * Functional test for SimpleGlobalAccountMapper
  */
-class SimpleGlobalAccountMapperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
+class SimpleGlobalAccountMapperTest extends \Neos\Flow\Tests\FunctionalTestCase {
 
 	/**
 	 * @test

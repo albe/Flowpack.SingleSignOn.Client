@@ -6,7 +6,7 @@ namespace Flowpack\SingleSignOn\Client\Domain\Model;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * SSO client
@@ -29,7 +29,7 @@ class SsoClient {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Cryptography\RsaWalletServiceInterface
+	 * @var \Neos\Flow\Security\Cryptography\RsaWalletServiceInterface
 	 */
 	protected $rsaWalletService;
 

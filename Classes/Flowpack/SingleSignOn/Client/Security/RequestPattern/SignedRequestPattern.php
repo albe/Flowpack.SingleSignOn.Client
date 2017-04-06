@@ -6,22 +6,22 @@ namespace Flowpack\SingleSignOn\Client\Security\RequestPattern;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * FIXME This is rather a "UnsignedRequest" pattern because it doesn't match correctly signed requests.
  */
-class SignedRequestPattern implements \TYPO3\Flow\Security\RequestPatternInterface {
+class SignedRequestPattern implements \Neos\Flow\Security\RequestPatternInterface {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Cryptography\RsaWalletServiceInterface
+	 * @var \Neos\Flow\Security\Cryptography\RsaWalletServiceInterface
 	 */
 	protected $rsaWalletService;
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\ObjectManagement\ObjectManagerInterface
+	 * @var \Neos\Flow\ObjectManagement\ObjectManagerInterface
 	 */
 	protected $objectManager;
 
@@ -69,16 +69,16 @@ class SignedRequestPattern implements \TYPO3\Flow\Security\RequestPatternInterfa
 	 * This pattern will return TRUE if the request is not signed or
 	 * the signature of the request is invalid.
 	 *
-	 * @param \TYPO3\Flow\Mvc\RequestInterface $request The request that should be matched
+	 * @param \Neos\Flow\Mvc\RequestInterface $request The request that should be matched
 	 * @return boolean TRUE if the pattern matched, FALSE otherwise
 	 */
-	public function matchRequest(\TYPO3\Flow\Mvc\RequestInterface $request) {
-		/** @var \TYPO3\Flow\Http\Request $httpRequest */
+	public function matchRequest(\Neos\Flow\Mvc\RequestInterface $request) {
+		/** @var \Neos\Flow\Http\Request $httpRequest */
 		$httpRequest = $request->getHttpRequest();
 		if ($httpRequest->hasHeader('X-Request-Signature')) {
 			$identifierAndSignature = explode(':', $httpRequest->getHeader('X-Request-Signature'), 2);
 			if (count($identifierAndSignature) !== 2) {
-				throw new \TYPO3\Flow\Exception('Invalid signature header format, expected "identifier:base64(signature)"', 1354287886);
+				throw new \Neos\Flow\Exception('Invalid signature header format, expected "identifier:base64(signature)"', 1354287886);
 			}
 			$identifier = $identifierAndSignature[0];
 			$signature = base64_decode($identifierAndSignature[1]);
@@ -87,7 +87,7 @@ class SignedRequestPattern implements \TYPO3\Flow\Security\RequestPatternInterfa
 
 			$publicKeyFingerprint = $this->publicKeyResolver->resolveFingerprintByIdentifier($identifier);
 			if ($publicKeyFingerprint === NULL) {
-				throw new \TYPO3\Flow\Exception('Cannot resolve identifier "' . $identifier .  '"', 1354288898);
+				throw new \Neos\Flow\Exception('Cannot resolve identifier "' . $identifier .  '"', 1354288898);
 			}
 
 			if ($this->rsaWalletService->verifySignature($signData, $signature, $publicKeyFingerprint)) {
@@ -103,7 +103,7 @@ class SignedRequestPattern implements \TYPO3\Flow\Security\RequestPatternInterfa
 	}
 
 	/**
-	 * @param \TYPO3\Flow\Mvc\RequestInterface $request
+	 * @param \Neos\Flow\Mvc\RequestInterface $request
 	 * @param string $identifier
 	 * @param string $signData
 	 * @param string $signature
@@ -113,7 +113,7 @@ class SignedRequestPattern implements \TYPO3\Flow\Security\RequestPatternInterfa
 	}
 
 	/**
-	 * @param \TYPO3\Flow\Mvc\RequestInterface $request
+	 * @param \Neos\Flow\Mvc\RequestInterface $request
 	 */
 	protected function emitSignatureHeaderMissing($request) {
 	}

@@ -6,9 +6,9 @@ namespace Flowpack\SingleSignOn\Client\Security\EntryPoint;
  *                                                                            *
  *                                                                            */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Http\Request;
-use TYPO3\Flow\Http\Response;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Http\Request;
+use Neos\Flow\Http\Response;
 use Flowpack\SingleSignOn\Client\Exception;
 
 /**
@@ -17,7 +17,7 @@ use Flowpack\SingleSignOn\Client\Exception;
  * The server will redirect back to the client, where the SingleSignOnProvider will get the authentication
  * information from the URI.
  */
-class SingleSignOnRedirect extends \TYPO3\Flow\Security\Authentication\EntryPoint\AbstractEntryPoint {
+class SingleSignOnRedirect extends \Neos\Flow\Security\Authentication\EntryPoint\AbstractEntryPoint {
 
 	/**
 	 * @Flow\Inject
@@ -37,8 +37,8 @@ class SingleSignOnRedirect extends \TYPO3\Flow\Security\Authentication\EntryPoin
 	 * The redirect includes the callback URI (the original URI from the given request)
 	 * the client identifier and a signature of the arguments with the client private key.
 	 *
-	 * @param \TYPO3\Flow\Http\Request $request The current request
-	 * @param \TYPO3\Flow\Http\Response $response The current response
+	 * @param \Neos\Flow\Http\Request $request The current request
+	 * @param \Neos\Flow\Http\Response $response The current response
 	 * @return void
 	 */
 	public function startAuthentication(Request $request, Response $response) {

@@ -11,7 +11,7 @@ use \Mockery as m;
 /**
  * Unit test for SsoServer
  */
-class SsoServerTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class SsoServerTest extends \Neos\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -20,7 +20,7 @@ class SsoServerTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$ssoServer = new \Flowpack\SingleSignOn\Client\Domain\Model\SsoServer();
 		$ssoServer->setServiceBaseUri('http://ssodemoserver/test/sso');
 
-		$mockRequestEngine = m::mock('TYPO3\Flow\Http\Client\RequestEngineInterface');
+		$mockRequestEngine = m::mock('Neos\Flow\Http\Client\RequestEngineInterface');
 		$this->inject($ssoServer, 'requestEngine', $mockRequestEngine);
 
 		$mockRequestSigner = m::mock('Flowpack\SingleSignOn\Client\Security\RequestSigner');
@@ -34,7 +34,7 @@ class SsoServerTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$mockRequestEngine->shouldReceive('sendRequest')->with(m::on(function($request) use (&$lastRequest) {
 			$lastRequest = $request;
 			return TRUE;
-		}))->once()->andReturn(m::mock('TYPO3\Flow\Http\Response', array(
+		}))->once()->andReturn(m::mock('Neos\Flow\Http\Response', array(
 			'getStatusCode' => 200
 		)));
 
@@ -51,7 +51,7 @@ class SsoServerTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$ssoServer = new \Flowpack\SingleSignOn\Client\Domain\Model\SsoServer();
 		$ssoServer->setServiceBaseUri('http://ssodemoserver/test/sso');
 
-		$mockRequestEngine = m::mock('TYPO3\Flow\Http\Client\RequestEngineInterface');
+		$mockRequestEngine = m::mock('Neos\Flow\Http\Client\RequestEngineInterface');
 		$this->inject($ssoServer, 'requestEngine', $mockRequestEngine);
 
 		$mockRequestSigner = m::mock('Flowpack\SingleSignOn\Client\Security\RequestSigner');
@@ -62,7 +62,7 @@ class SsoServerTest extends \TYPO3\Flow\Tests\UnitTestCase {
 			'getPublicKeyFingerprint' => 'ClientPublicKeyFingerprint'
 		));
 
-		$mockResponse = m::mock('TYPO3\Flow\Http\Response', array(
+		$mockResponse = m::mock('Neos\Flow\Http\Response', array(
 			'getStatusCode' => 201,
 			'getContent' => '{}'
 		));
@@ -86,7 +86,7 @@ class SsoServerTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$ssoServer = new \Flowpack\SingleSignOn\Client\Domain\Model\SsoServer();
 		$ssoServer->setServiceBaseUri('http://ssodemoserver/test/sso');
 
-		$mockRequestEngine = m::mock('TYPO3\Flow\Http\Client\RequestEngineInterface');
+		$mockRequestEngine = m::mock('Neos\Flow\Http\Client\RequestEngineInterface');
 		$this->inject($ssoServer, 'requestEngine', $mockRequestEngine);
 
 		$mockRequestSigner = m::mock('Flowpack\SingleSignOn\Client\Security\RequestSigner');
@@ -96,7 +96,7 @@ class SsoServerTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$mockRequestEngine->shouldReceive('sendRequest')->with(m::on(function($request) use (&$lastRequest) {
 			$lastRequest = $request;
 			return TRUE;
-		}))->once()->andReturn(m::mock('TYPO3\Flow\Http\Response', array(
+		}))->once()->andReturn(m::mock('Neos\Flow\Http\Response', array(
 			'getStatusCode' => 200
 		)));
 

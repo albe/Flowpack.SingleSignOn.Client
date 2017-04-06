@@ -5,69 +5,32 @@
 Flowpack:
   SingleSignOn:
     Client:
-      # SSO client configuration
       client:
-        # The client service base URI as the client identifier
-        # Must point to the URI where the SSO client routes are mounted
         serviceBaseUri: ''
-        # The client key pair fingerprint
         publicKeyFingerprint: ''
-
-      # A list of named SSO server configurations
-      server:
-        # Example server configuration
-        #
-        #   DemoServer:
-        #     publicKeyFingerprint: 'bb5abb57faa122cc031e3c904db3d751'
-        #     serviceBaseUri: 'http://ssoserver/sso'
-
+      server: null
       accountMapper:
-        # Map a party type from the server to the instance, more complex scenarios
-        # need a specialized account mapper implementation (see GlobalAccountMapperInterface)
-        #
-        # typeMapping:
-        #   'Vendor\MyServer\Domain\Model\SomeParty': 'Vendor\MyApplication\Domain\Model\OtherParty'
-        #
-        typeMapping: []
-
+        typeMapping: {  }
       log:
-        # Enable logging of failed signed requests (signature verification errors)
-        logFailedSignedRequests: FALSE
-
-# Example configuration for a SSO entry point
-#
-#   TYPO3:
-#     Flow:
-#       security:
-#         authentication:
-#           providers:
-#             SingleSignOnProvider:
-#               provider: 'Flowpack\SingleSignOn\Client\Security\SingleSignOnProvider'
-#               providerOptions:
-#                 server: DemoServer
-#                 globalSessionTouchInterval: 60
-#               entryPoint: 'Flowpack\SingleSignOn\Client\Security\EntryPoint\SingleSignOnRedirect'
-#               entryPointOptions:
-#                 server: DemoServer
-
-TYPO3:
+        logFailedSignedRequests: false
+Neos:
   Flow:
     security:
       firewall:
         filters:
           ssoClientSignedRequests:
-            patternType: 'Flowpack\SingleSignOn\Client\Security\RequestPattern\ConjunctionPattern'
+            patternType: Flowpack\SingleSignOn\Client\Security\RequestPattern\ConjunctionPattern
             patternValue:
               patterns:
                 -
                   patternType: ControllerObjectName
-                  patternValue: 'Flowpack\SingleSignOn\Client\Controller\SessionController'
+                  patternValue: Flowpack\SingleSignOn\Client\Controller\SessionController
                 -
-                  patternType: 'Flowpack\SingleSignOn\Client\Security\RequestPattern\SignedRequestPattern'
+                  patternType: Flowpack\SingleSignOn\Client\Security\RequestPattern\SignedRequestPattern
                   patternValue:
-                    resolverType: 'Flowpack\SingleSignOn\Client\Security\RequestPattern\SsoServerPublicKeyResolver'
+                    resolverType: Flowpack\SingleSignOn\Client\Security\RequestPattern\SsoServerPublicKeyResolver
             interceptor: AccessDeny
-
     object:
       excludeClasses:
-       'mockery.mockery' : ['.*']
+        mockery.mockery:
+          - '.*'

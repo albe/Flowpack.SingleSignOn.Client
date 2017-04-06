@@ -11,7 +11,7 @@ use \Mockery as m;
 /**
  * Unit test for SingleSignOnManager
  */
-class SingleSignOnManagerTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class SingleSignOnManagerTest extends \Neos\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -23,14 +23,14 @@ class SingleSignOnManagerTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$this->inject($manager, 'ssoClientFactory', $mockSsoClientFactory);
 		$mockSsoServerFactory = m::mock('Flowpack\SingleSignOn\Client\Domain\Factory\SsoServerFactory');
 		$this->inject($manager, 'ssoServerFactory', $mockSsoServerFactory);
-		$mockConfigurationManager = m::mock('TYPO3\Flow\Configuration\ConfigurationManager');
+		$mockConfigurationManager = m::mock('Neos\Flow\Configuration\ConfigurationManager');
 		$this->inject($manager, 'configurationManager', $mockConfigurationManager);
-		$mockSecurityContext = m::mock('TYPO3\Flow\Security\Context');
+		$mockSecurityContext = m::mock('Neos\Flow\Security\Context');
 		$this->inject($manager, 'securityContext', $mockSecurityContext);
 
 		$mockConfigurationManager
 			->shouldReceive('getConfiguration')
-			->with(\TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow')
+			->with(\Neos\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'Neos.Flow')
 			->andReturn(array(
 				'security' => array(
 					'authentication' => array(
