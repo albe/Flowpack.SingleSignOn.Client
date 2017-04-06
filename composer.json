@@ -1,6 +1,6 @@
 {
     "name": "flowpack/singlesignon-client",
-    "type": "typo3-flow-package",
+    "type": "neos-flow-package",
     "description": "Flowpack SingleSignOn Client",
     "license": [
         "MIT"
@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "typo3/flow": "~3.0"
+        "neos/flow": "~4.0"
     },
     "autoload": {
         "psr-0": {
