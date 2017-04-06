@@ -66,7 +66,7 @@ class SimpleGlobalAccountMapper implements GlobalAccountMapperInterface {
 	 * Map the party from the given source data
 	 *
 	 * @param array $source
-	 * @return \TYPO3\Party\Domain\Model\AbstractParty
+	 * @return \Neos\Party\Domain\Model\AbstractParty
 	 */
 	protected function mapParty(array $source) {
 		if (!isset($source['__type'])) {

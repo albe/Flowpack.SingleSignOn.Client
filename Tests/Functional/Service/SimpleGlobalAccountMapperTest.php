@@ -22,7 +22,7 @@ class SimpleGlobalAccountMapperTest extends \Neos\Flow\Tests\FunctionalTestCase 
 			'accountIdentifier' => 'jdoe',
 			'roles' => array('Administrator'),
 			'party' => array(
-				'__type' => 'TYPO3\Party\Domain\Model\Person',
+				'__type' => 'Neos\Party\Domain\Model\Person',
 				'name' => array(
 					'firstName' => 'John',
 					'lastName' => 'Doe'
@@ -35,7 +35,7 @@ class SimpleGlobalAccountMapperTest extends \Neos\Flow\Tests\FunctionalTestCase 
 
 		$account = $accountMapper->getAccount($ssoClient, $accountData);
 
-		$this->assertInstanceOf('TYPO3\Party\Domain\Model\Person', $account->getParty());
+		$this->assertInstanceOf('Neos\Party\Domain\Model\Person', $account->getParty());
 	}
 
 	/**
@@ -58,12 +58,12 @@ class SimpleGlobalAccountMapperTest extends \Neos\Flow\Tests\FunctionalTestCase 
 		/** @var \Flowpack\SingleSignOn\Client\Service\SimpleGlobalAccountMapper $accountMapper */
 		$accountMapper = $this->objectManager->get('Flowpack\SingleSignOn\Client\Service\SimpleGlobalAccountMapper');
 		$accountMapper->setTypeMapping(array(
-			'Legacy\Person' => 'TYPO3\Party\Domain\Model\Person'
+			'Legacy\Person' => 'Neos\Party\Domain\Model\Person'
 		));
 
 		$account = $accountMapper->getAccount($ssoClient, $accountData);
 
-		$this->assertInstanceOf('TYPO3\Party\Domain\Model\Person', $account->getParty());
+		$this->assertInstanceOf('Neos\Party\Domain\Model\Person', $account->getParty());
 	}
 
 }
