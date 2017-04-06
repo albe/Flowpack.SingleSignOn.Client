@@ -21,7 +21,7 @@ class SignedRequestPattern implements \TYPO3\Flow\Security\RequestPatternInterfa
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Object\ObjectManagerInterface
+	 * @var \TYPO3\Flow\ObjectManagement\ObjectManagerInterface
 	 */
 	protected $objectManager;
 

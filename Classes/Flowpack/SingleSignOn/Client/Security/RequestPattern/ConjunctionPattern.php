@@ -21,7 +21,7 @@ class ConjunctionPattern implements \TYPO3\Flow\Security\RequestPatternInterface
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Object\ObjectManagerInterface
+	 * @var \TYPO3\Flow\ObjectManagement\ObjectManagerInterface
 	 */
 	protected $objectManager;
 

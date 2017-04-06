@@ -20,7 +20,7 @@ class ConjunctionPatternTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	public function matchRequestReturnsFalseOnFirstSubpatternFail() {
 		$pattern = new \Flowpack\SingleSignOn\Client\Security\RequestPattern\ConjunctionPattern();
 
-		$mockObjectManager = m::mock('TYPO3\Flow\Object\ObjectManagerInterface');
+		$mockObjectManager = m::mock('TYPO3\Flow\ObjectManagement\ObjectManagerInterface');
 		$this->inject($pattern, 'objectManager', $mockObjectManager);
 		$mockRequestPatternResolver = m::mock('TYPO3\Flow\Security\RequestPatternResolver');
 		$this->inject($pattern, 'requestPatternResolver', $mockRequestPatternResolver);
@@ -60,7 +60,7 @@ class ConjunctionPatternTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	public function matchRequestReturnsTrueIfAllSubpatternsMatch() {
 		$pattern = new \Flowpack\SingleSignOn\Client\Security\RequestPattern\ConjunctionPattern();
 
-		$mockObjectManager = m::mock('TYPO3\Flow\Object\ObjectManagerInterface');
+		$mockObjectManager = m::mock('TYPO3\Flow\ObjectManagement\ObjectManagerInterface');
 		$this->inject($pattern, 'objectManager', $mockObjectManager);
 		$mockRequestPatternResolver = m::mock('TYPO3\Flow\Security\RequestPatternResolver');
 		$this->inject($pattern, 'requestPatternResolver', $mockRequestPatternResolver);
