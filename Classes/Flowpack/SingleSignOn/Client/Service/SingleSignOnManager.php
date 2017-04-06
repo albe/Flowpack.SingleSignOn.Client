@@ -53,7 +53,7 @@ class SingleSignOnManager {
 		$tokens = $this->securityContext->getAuthenticationTokensOfType('Flowpack\SingleSignOn\Client\Security\SingleSignOnToken');
 		foreach ($tokens as $token) {
 			$providerName = $token->getAuthenticationProviderName();
-			$serverIdentifier = \Neos\Flow\Utility\Arrays::getValueByPath($allConfiguration, 'security.authentication.providers.' . $providerName . '.providerOptions.server');
+			$serverIdentifier = \Neos\Utility\Arrays::getValueByPath($allConfiguration, 'security.authentication.providers.' . $providerName . '.providerOptions.server');
 			if ($serverIdentifier !== NULL) {
 				$ssoClient = $this->ssoClientFactory->create();
 				$ssoServer = $this->ssoServerFactory->create($serverIdentifier);

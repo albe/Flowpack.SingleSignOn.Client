@@ -58,8 +58,8 @@ class SingleSignOnToken extends \Neos\Flow\Security\Authentication\Token\Abstrac
 
 			// Check if we have a callback request
 		$arguments = $httpRequest->getArguments();
-		$accessTokenCipher = \Neos\Flow\Reflection\ObjectAccess::getPropertyPath($arguments, '__flowpack.singlesignon.accessToken');
-		$signature = \Neos\Flow\Reflection\ObjectAccess::getPropertyPath($arguments, '__flowpack.singlesignon.signature');
+		$accessTokenCipher = \Neos\Utility\ObjectAccess::getPropertyPath($arguments, '__flowpack.singlesignon.accessToken');
+		$signature = \Neos\Utility\ObjectAccess::getPropertyPath($arguments, '__flowpack.singlesignon.signature');
 
 		if (!empty($accessTokenCipher) && !empty($signature)) {
 				// Get callback parameters from request
